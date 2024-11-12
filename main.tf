@@ -57,7 +57,7 @@ resource "null_resource" "run_powershell_script" {
   provisioner "local-exec" {
   # Execute the PowerShell script and pass the JSON file name
     command = <<EOT
-      pwsh -Command "& { .terraform/modules/entra-id-module-saml-app/update-app.ps1 -jsonFile saml-app/applications/${var.env}/${var.app_space}/${var.json_file} };exit \$LASTEXITCODE"
+      pwsh -Command "& { .terraform/modules/saml_apps/update-app.ps1 -jsonFile saml-app/applications/${var.env}/${var.app_space}/${var.json_file} };exit \$LASTEXITCODE"
     EOT
   }
   depends_on = [data.azuread_application.saml_app_data,azuread_service_principal.saml_sp]
